@@ -5,3 +5,5 @@ manager.on("request", (request) => {
     request.data = 'data';
     manager.response = request;
 });
+
+module.exports.manager = manager
