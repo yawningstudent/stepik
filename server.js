@@ -5,3 +5,5 @@ server.on("request", (req, res)=>{
     console.log("Hello world!\n");
     res.statusCode = 200;
 });
+
+module.exports.server = server
