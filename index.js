@@ -16,3 +16,6 @@ class Room {
         this.owner = newOwner;
     }
 }
+
+module.exports.man = man
+module.exports.Room = Room
