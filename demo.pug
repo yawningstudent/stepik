@@ -1,13 +1,13 @@
-html
+doctype html                                                                   
+html(lang="ru")
     head
         meta(charset="utf-8")
     body   
         form(method="GET", action="submitform")
-                input(id="name", type="text")
-                input(id="password", type="password")
-                input(type="submit", value="submit")
-        p
+            input(id="name", name="name")
+            input(id="password", type="password", name="password")
+            input(type="submit", name="submit")
         -if (counter === 1)
-            Hello
+            p Hello
         -else 
-            Again
+            p Again
