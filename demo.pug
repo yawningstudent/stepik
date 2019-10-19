@@ -2,6 +2,10 @@ html
     head
         meta(charset="utf-8")
     body   
+        form(method="GET", action="submitform")
+                input(id="name", type="text")
+                input(id="password", type="password")
+                input(type="submit", value="submit")
         -if (counter === 1)
             p Hello
         -else 
