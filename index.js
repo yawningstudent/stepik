@@ -1,21 +1,19 @@
-let man = {
-    name: 'Andrey',
-    surname: 'Tokarev',
-    fullName(){
-        return this.surname + ' ' + this.name;
-    }
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var test;
+module.exports.request = function(){
+    let req = new XMLHttpRequest()
+    req.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            test = this.responseText;
+            post();
+        };
+    };
+req.open("GET", 'http:\/\/localhost:3000', true);
+req.send();
 }
 
-class Room {
-    constructor (windows = 1, owner = 'Andrey'){
-        if(windows > 0) this.windows = windows;
-        else windows = 0;
-        this.owner = owner;
-    }
-    setOwner(newOwner){
-        this.owner = newOwner;
-    }
+function post(){
+    let req = new XMLHttpRequest();
+    req.open("POST", 'http:\/\/localhost:3000', true);
+    req.send();
 }
-
-module.exports.man = man
-module.exports.Room = Room
