@@ -1,0 +1,15 @@
+extends base.pug
+block content
+    h1(class='login') Login
+        div.centre
+            div
+                p Логин
+                input(id='username')
+            div
+                p Пароль
+                input(id='password', type='password')
+            p
+            button(title='Войти', style='width:100px; height:20px', onclick='submitForm()') Войти
+
+        script
+            include ../auth.js

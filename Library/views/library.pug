@@ -1,0 +1,96 @@
+html
+    thead
+        meta(charset="utf-8")
+        title Library
+        style
+            include ../style.css
+        script
+            include ../ajax_helper.js
+    tbody
+        h1 БИБЛИОТЕКА
+        h2(style='text-align:center')= "Пользователь: " + user
+        table
+            tr(class='lib_manager')
+                th(class="td_man")
+                    input(type='button', value='Добавить книгу', class='man_button', id='add_btn')
+                    div(class="modal")
+                        div(class="modal-content")
+                            h2 Добавить книгу
+                            span(class='close-button')
+                            table
+                                tr
+                                    th Номер
+                                    th
+                                        input(type='text', id="book_num")
+                                tr
+                                    th Название
+                                    th
+                                        input(type='text', id='book_name')
+                                tr
+                                    th Автор
+                                    th
+                                        input(type='text', id='book_author')
+                                tr
+                                    th Год написания
+                                    th
+                                        input(type='text', id='book_year')
+                            br
+                            input(type='button', value='Добавить', class='get_button', style='width:50%', onclick='create_book()')
+                th(class="td_man")
+                    input(type='button', value='Удалить книгу', class='man_button', id='remove_btn')
+                    div(class="modal")
+                        div(class="modal-content")
+                            h2 Удалить книгу
+                            span(class='close-button')
+                            table
+                                tr
+                                    th Номер
+                                    th
+                                        input(type='text', id="book_num_remove")
+                            br
+                            input(type='button', value='Удалить', class='get_button', style='width:50%', onclick='remove_book_request()')
+                    script
+                        include ../add_modal.js
+                th(class="td_man")
+                    input(type='button', value='Сменить пользователя', class='man_button', id='change_usr_btn', onclick='change_user()')
+                th(class="td_man")
+                    input(type='button', value='Фильтр "В наличии"', class='man_button', id='filter_avail_btn', onclick='filter(' + 1 + ')')
+                th(class="td_man")
+                    input(type='button', value='Без фильтра', class='man_button', id='show_all_btn', onclick='filter(' + 0 + ')')
+        br
+        br
+        table(id='mytable')
+            tr
+                tr
+                    th(class='td_h') Название
+                    th(class='td_h') Номер
+                    th(class='td_h') В наличии
+                    th(class='td_h') Дата Выдачи
+                    th(class='td_h') Владелец
+
+            each book in lib
+                tr
+                    th= book.name
+                    th= book.id
+                    if book.available
+                        th= "+"
+                    else
+                        th= "-"
+                    th= book.return_data
+                    th= book.owner
+                    th(class="td_empty")
+                        th(class="td_light")
+                            if book.available
+                                input(type='button', value='Взять', class='get_button', onclick='get_book(' + book.id + ')')
+                            else
+                                input(disabled, type='button', value='Взять', class='get_button')
+                        th(class="td_light")
+                            if (!book.available && user === book.owner)
+                                input(type='button', value='Отдать', class='get_button', onclick='return_book(' + book.id + ')')
+                            else
+                                input(disabled, type='button', value='Отдать', class='get_button')
+                        th(class="td_light")
+                            if book.available
+                                input(type='button', value='Ред.', class='get_button', onclick='edit(' + book.id + ')')
+                            else
+                                input(disabled, type='button', value='Ред.', class='get_button', onclick='edit(' + book.id + ')')

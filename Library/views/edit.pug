@@ -1,0 +1,20 @@
+doctype
+html
+    style
+        include ../style.css
+    body
+        div.center_div
+            h1 РЕДАКТИРОВАНИЕ
+            p НОМЕР
+            input(disabled, id='_id', value=book.id)
+            p НАЗВАНИЕ
+            input(id='name', value=book.name)
+            p АВТОР
+            input(id='author',value=book.author)
+            p ГОД
+            input(id='year', value=book.creation_date)
+
+            p
+            input(type='button', value='Подтвердить', onclick="submitBookData()")
+        script
+            include ../book_edit.js
